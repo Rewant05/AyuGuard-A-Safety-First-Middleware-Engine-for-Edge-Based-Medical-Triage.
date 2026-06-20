@@ -1,53 +1,46 @@
-# AyuGuard: Dual-Submission Repository
+# AyuGuard: Safety-First AI Middleware for Global South Healthcare
+### *Track A: Global South AI Safety Hackathon*
 
-This repository hosts two closely related prototypes for rural Indian healthcare:
+**AyuGuard** is an open-source, safety-first middleware engine designed to solve the critical "hallucination crisis" in medical AI deployment for rural and underserved regions. By implementing a rigorous safety router, AyuGuard ensures that AI-driven diagnostic assistance in primary health centers (PHCs) is verified, context-aware, and fundamentally safe.
 
-## Track A: Global South AI Safety Hackathon
-**AyuGuard MedSafety Router** — An India-specific AI safety evaluation and routing system for reducing unsafe medical advice in rural and multilingual healthcare contexts.
-- **Dataset:** `dataset/indian_medical_safety_prompts.json` (100 evaluated prompts)
-- **Router:** `src/lib/safetyRouter.ts` (Rule-based keyword triage prototype)
-- **Evaluation:** `scripts/evaluateRouter.ts` (Automated metrics generation)
-- **Report:** `reports/global-south-ai-safety-report.md`
-- **Dashboard:** See "AI Safety Router" and "Evaluation" tabs in the app.
-
-## Track B: BioMed Bharat 2026
-**AyuGuard Edge** — An offline biomedical triage hub for rural clinics.
-- **Device Concept:** Offline edge-device capturing vitals via connected sensors.
-- **Dashboard:** "Dashboard" and "Trends" tabs for frontline health workers.
-- **Hardware:** "Hardware / BoM" tab detailing the sub-10K INR build.
-- **Proposal:** `reports/biomed-bharat-proposal.md`
+![AyuGuard Dashboard](dashboard.png)
 
 ---
 
-## How To Run Locally
+## 🌍 The Problem
+In the Global South, primary care providers often lack specialized training and immediate access to clinical decision support. While LLMs offer a potential solution, they pose severe risks:
+1.  **Diagnostic Hallucinations:** Unverified medical advice can lead to life-threatening patient outcomes.
+2.  **Linguistic Context:** Standard models struggle with regional dialects, Hinglish, and cultural medical nuances.
+3.  **Lack of Escalation:** Most AI tools function as "black boxes," leaving health workers without a clear path to consult a human doctor.
 
-**1. Install dependencies**
+---
+
+## 🛡️ The Solution: AyuGuard MedSafety Router
+AyuGuard acts as a **Guardian Layer** between the raw LLM and the frontline health worker.
+
+### Core Features
+*   ✅ **Context-Aware Safety Parsing:** Routes medical queries through a custom rule-based triage system before hitting the LLM.
+*   ✅ **Dynamic Risk Escalation:** Automatically classifies responses as *Safe*, *Escalate to Human*, or *Block*.
+*   ✅ **Linguistic Robustness:** Specifically designed to handle multilingual/code-mixed inputs common in Indian clinical settings.
+*   ✅ **Audit & Evaluation:** Built-in automated testing for safety thresholds to ensure high precision in high-stakes environments.
+
+---
+
+## 📊 Technical Architecture (Track A Focus)
+
+| Module | Description |
+| :--- | :--- |
+| **Safety Router** | `src/lib/safetyRouter.ts` - The primary logic layer for intercepting and classifying high-risk prompts. |
+| **Safety Dataset** | `dataset/indian_medical_safety_prompts.json` - A curated library of 100+ edge-case medical safety probes. |
+| **Evaluation Engine** | `scripts/evaluateRouter.ts` - Automated pipeline generating safety metrics (F1-score, False Negative Rate). |
+| **Telemetry** | Real-time logging of blocked vs. escalated queries for clinical review. |
+
+---
+
+## 🚀 How to Run Locally
+
+**1. Clone & Install**
 ```bash
+git clone [https://github.com/Rewant05/AyuGuard-A-Safety-First-Middleware-Engine-for-Edge-Based-Medical-Triage.git](https://github.com/Rewant05/AyuGuard-A-Safety-First-Middleware-Engine-for-Edge-Based-Medical-Triage.git)
+cd AyuGuard-A-Safety-First-Middleware-Engine-for-Edge-Based-Medical-Triage
 npm install
-```
-
-**2. Start the Application**
-```bash
-npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000)
-
-**3. Run the AI Safety Evaluation (Track A)**
-```bash
-npm run evaluate
-```
-This generates the metrics displayed on the Evaluation page.
-
----
-
-## Safety Constraints & Disclaimers
-- **No Clinical Validation:** This system uses simulated data and is a research prototype.
-- **No Diagnosis or Prescriptions:** AyuGuard explicitly does not provide diagnosis, prescribe medicine, or suggest dosage changes.
-- **Human-in-the-loop:** The core design is to *assist* frontline workers in escalating to human clinicians, not to replace them.
-
----
-
-## Future Scope
-- Integration with local Small Language Models (SLMs) trained on Indian medical constraints.
-- Real hardware sensor firmware integration (Track B).
-- Expanding the dataset for Tamil, Marathi, and Bengali code-mixed queries (Track A).
