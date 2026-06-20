@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="AyuGuard Edge icon">
+  <rect width="512" height="512" rx="96" fill="#0f766e"/>
+  <path d="M256 112c58 0 106 47 106 106 0 88-106 182-106 182S150 306 150 218c0-59 48-106 106-106Z" fill="#ffffff"/>
+  <path d="M256 168v116" stroke="#0f766e" stroke-width="34" stroke-linecap="round"/>
+  <path d="M198 226h116" stroke="#0f766e" stroke-width="34" stroke-linecap="round"/>
+  <path d="M96 262h76l26-48 46 96 38-82 28 34h106" fill="none" stroke="#d9f99d" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

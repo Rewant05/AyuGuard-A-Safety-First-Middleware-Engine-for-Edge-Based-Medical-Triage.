@@ -1,0 +1,17 @@
+{
+  "name": "AyuGuard Edge",
+  "short_name": "AyuGuard",
+  "description": "Offline biomedical triage and deterioration-alert hub for rural primary health centres.",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#f7fbfa",
+  "theme_color": "#0f766e",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
