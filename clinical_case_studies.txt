@@ -1,0 +1,18 @@
+CLINICAL CONTEXT & DRUG-HERB INTERACTION CASE STUDIES FOR AYUGUARD
+
+Case Study 1: Severe Hypoglycemia Risk
+- Allopathic Drug: Metformin (Anti-diabetic)
+- Traditional Herb: Gymnema sylvestre (Gurmar - commonly used in Indian villages for sugar control).
+- AI Hallucination Vulnerability: Standard LLMs often tell users it is "safe and natural" to take Gurmar alongside Metformin.
+- Clinical Reality: Co-ingestion causes a synergistic effect leading to severe, life-threatening hypoglycemia. AyuGuard intercepts keywords like "Metformin + Gurmar" and triggers a Critical Block.
+
+Case Study 2: Hepatotoxicity (Liver Damage) Risk
+- Allopathic Drug: Standard NSAIDs or Acetaminophen
+- Traditional Herb: Unregulated high-dose Ashwagandha or Giloy
+- AI Hallucination Vulnerability: Standard models fail to recognize the contraindication when a patient has a pre-existing compromised liver. 
+- Clinical Reality: AyuGuard parses the patient's existing medication list and blocks alternative prescriptions that could cause acute liver injury.
+
+Case Study 3: Hemorrhage Risk
+- Allopathic Drug: Warfarin / Aspirin (Blood thinners)
+- Traditional Herb: High-dose Garlic extracts (Lahsuna) or Ginkgo
+- Clinical Reality: Both act as anticoagulants. Combining them without doctor supervision leads to internal bleeding.

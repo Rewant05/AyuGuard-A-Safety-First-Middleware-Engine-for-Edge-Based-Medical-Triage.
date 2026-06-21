@@ -6,6 +6,7 @@ import {
   Brain, User, MapPin, Calendar, AlertTriangle, CheckCircle2, Clock
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { VoiceDictation } from "./VoiceDictation"; // Adjust path if needed
 
 /* ─── NEWS2 Scoring Parameters ─── */
 /* Based on Royal College of Physicians NEWS2 chart */
@@ -92,6 +93,18 @@ export function NEWS2IntakeForm() {
     setVitals((prev) => ({ ...prev, [key]: value }));
   };
 
+  // ─── Voice Dictation Handler ─── 
+  const handleVoiceVitals = (extracted: any) => {
+    setVitals((prev) => ({
+      ...prev,
+      // Map extracted values to our state keys, only updating if a value was found
+      ...(extracted.heartRate && { heartRate: extracted.heartRate }),
+      ...(extracted.spo2 && { spo2: extracted.spo2 }),
+      ...(extracted.temperatureC && { temperature: extracted.temperatureC }),
+      ...(extracted.systolicBp && { systolicBp: extracted.systolicBp })
+    }));
+  };
+
   /* ─── Compute NEWS2 Score ─── */
   const news2 = useMemo(() => {
     const hr = parseFloat(vitals.heartRate) || 0;
@@ -135,7 +148,7 @@ export function NEWS2IntakeForm() {
   const riskStyles = {
     low:    { bg: "bg-emerald-50",  border: "border-emerald-200", text: "text-emerald-800", badge: "bg-emerald-500", glow: "" },
     medium: { bg: "bg-amber-50",    border: "border-amber-200",   text: "text-amber-800",   badge: "bg-amber-500",   glow: "" },
-    high:   { bg: "bg-rose-50",     border: "border-rose-200",    text: "text-rose-800",     badge: "bg-rose-500",    glow: "animate-pulse-glow" },
+    high:   { bg: "bg-rose-50",     border: "border-rose-200",    text: "text-rose-800",    badge: "bg-rose-500",    glow: "animate-pulse-glow" },
   };
 
   const style = riskStyles[news2.risk];
@@ -213,9 +226,12 @@ export function NEWS2IntakeForm() {
               </div>
               <div>
                 <h2 className="text-lg font-bold text-slate-800">Physiological Vitals</h2>
-                <p className="text-sm text-slate-400">Adjust values to see real-time NEWS2 scoring</p>
+                <p className="text-sm text-slate-400">Speak or manually adjust values to see real-time NEWS2 scoring</p>
               </div>
             </div>
+
+            {/* ─── INTEGRATED VOICE DICTATION MODULE ─── */}
+            <VoiceDictation onVitalsExtracted={handleVoiceVitals} />
 
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
               {vitalInputs.map((input) => {

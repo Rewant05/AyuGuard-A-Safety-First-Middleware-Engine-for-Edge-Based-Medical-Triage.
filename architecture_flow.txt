@@ -1,0 +1,18 @@
+AYUGUARD SYSTEM ARCHITECTURE FLOW
+
+1. Data Ingestion: 
+- User inputs query via text or Hinglish Voice Dictation (Web Speech API -> hi-IN locale).
+- Query is captured by the Next.js frontend.
+
+2. Stage 1 Triage (The Safety Router):
+- The query hits `safetyRouter.ts`.
+- Keyword & Semantic Matching: The router scans for Schedule H drugs, traditional Ayurvedic terms, and symptom severities.
+- Risk Classification: Assigned a score of SAFE, ESCALATE, or CRITICAL.
+
+3. Stage 2 Branching:
+- IF SAFE: Query is passed to the standard LLM (Gemini) and the response is returned to the user.
+- IF CRITICAL / ESCALATE: The LLM is completely bypassed. The system returns a hardcoded, medically verified warning in the user's local language instructing them to consult a human doctor. 
+
+4. Offline Physiological Engine:
+- Runs in parallel on the edge device. 
+- Calculates NEWS2 (National Early Warning Score) locally via `NEWS2IntakeForm.tsx` using SpO2, Heart Rate, BP, Respiration, and Temp.
